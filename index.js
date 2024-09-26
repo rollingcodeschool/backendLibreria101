@@ -11,3 +11,8 @@ app.listen(app.get('port'), ()=>{
 //2 - configurar middlewares
 
 //3 - configurar las rutas
+// http://localhost:4000/prueba
+app.get('/prueba',(req, res)=>{
+    console.log('alguien hizo una solicitud get a la ruta de prueba')
+    res.send('Hola mundo desde el backend')
+})
