@@ -35,3 +35,25 @@ export const listarProductos = async(req, res)=>{
    }
    
 }
+
+export const editarProducto = async(req, res)=>{
+   try {
+      console.log(req.body)
+      console.log(req.params.id)
+      //validar los datos del body
+      //buscar si el producto existe
+      const productoBuscado = await Producto.findById(req.params.id)
+      console.log(productoBuscado)
+      //en caso que el producto no exista contesto con un error 404
+      if(!productoBuscado){
+         return res.status(404).json({mensaje: 'El producto solicitado no existe'})
+      }
+      //si lo encontre al producto, entonces lo edito
+      await Producto.findByIdAndUpdate(req.params.id, req.body)
+      //envio respuesta al frontend
+      res.status(200).json({mensaje: 'El producto fue editado correctamente'})
+   } catch (error) {
+      console.error(error)
+      res.status(500).json({mensaje: 'Ocurrio un error, no se pudo editar el producto'})
+   }
+}
