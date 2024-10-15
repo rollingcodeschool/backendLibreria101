@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import './src/database/dbConnection.js'
 import router from './src/routes/productos.routes.js';
+import usuarioRouter from './src/routes/usuarios.routes.js';
 
 //1 - configurar un puerto
 const app = express();
@@ -24,5 +25,6 @@ const __dirname = path.dirname(__filename)
 app.use(express.static(path.join(__dirname,"/public")))
 
 //3 - configurar las rutas
-// http://localhost:4000/prueba
+// http://localhost:4000/api/usuarios/registrar
 app.use('/api',router)
+app.use('/api/usuarios', usuarioRouter)
